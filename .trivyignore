@@ -1,0 +1,6 @@
+
+# Accepted risk for SafeFlow demo:
+# EC2 bootstrap needs outbound HTTPS to clone the repository
+# and download installation packages.
+# AWS-0104 still represents a residual egress risk.
+AWS-0104

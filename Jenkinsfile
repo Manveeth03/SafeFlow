@@ -65,7 +65,7 @@ pipeline {
       steps {
         sh 'mkdir -p reports'
         // Fails the build on HIGH/CRITICAL findings. Scans dependencies, secrets and IaC misconfiguration.
-        sh 'trivy fs --scanners vuln,secret,misconfig --severity HIGH,CRITICAL --exit-code 1 --format table --output reports/trivy-fs.txt .'
+        sh 'trivy fs --scanners vuln,secret,misconfig --severity HIGH,CRITICAL --exit-code 1 --ignorefile .trivyignore --format table --output reports/trivy-fs.txt .'
       }
     }
 

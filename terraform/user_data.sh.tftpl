@@ -1,0 +1,12 @@
+#!/bin/bash
+set -euxo pipefail
+dnf install -y docker git
+systemctl enable --now docker
+mkdir -p /usr/local/lib/docker/cli-plugins
+curl -fsSL "https://github.com/docker/compose/releases/download/${compose_version}/docker-compose-linux-x86_64" \
+  -o /usr/local/lib/docker/cli-plugins/docker-compose
+chmod +x /usr/local/lib/docker/cli-plugins/docker-compose
+git clone "${repo_url}" /opt/safeflow
+cd /opt/safeflow
+printf 'FRONTEND_PORT=80\n' > .env
+docker compose up -d --build
